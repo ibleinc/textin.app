@@ -7,4 +7,4 @@ Textin 是一款提供端到端加密的安全通讯应用，保障您的数据�
 - **本地存储**：您的数据不会上传到服务器，只有您能访问。
 - **无数据收集**：我们不收集任何用户数据。
 
-[隐私政策](privacy_en.html) | [使用条款](terms_en.html)
+📄 [Privacy Policy](privacy.html) | 📜 [Terms of Service](terms.html)
