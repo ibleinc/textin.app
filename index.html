@@ -1,20 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Textin</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
-    <script defer src="switch-lang.js"></script>
-    <script defer src="load-md.js"></script>
+    <title>Textin - Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.17/marked.min.js"></script>
 </head>
-<body>
-    <nav>
-        <button onclick="setLanguage('zh')">简体中文</button>
-        <button onclick="setLanguage('zh-tw')">繁體中文</button>
-        <button onclick="setLanguage('en')">English</button>
-    </nav>
+<body class="bg-gray-100 text-gray-900">
+    <div class="max-w-3xl mx-auto p-6">
+        <!-- 顶部导航栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-semibold">Textin</h1>
+            <div>
+                <button onclick="setLanguage('en')" class="px-3 py-1 text-sm">🇬🇧 English</button>
+                <button onclick="setLanguage('zh-cn')" class="px-3 py-1 text-sm">🇨🇳 简体中文</button>
+                <button onclick="setLanguage('zh-tw')" class="px-3 py-1 text-sm">🇭🇰 繁體中文</button>
+            </div>
+        </div>
 
-    <div id="content">加载中...</div>
+        <!-- 主要内容 -->
+        <div id="content" class="bg-white p-6 rounded-lg shadow">
+            <div id="markdown-content"></div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="mt-6 text-center text-sm text-gray-600">
+            <a href="#" onclick="loadMarkdown('home')" class="mx-2">🏠 Home</a> | 
+            <a href="#" onclick="loadMarkdown('terms')" class="mx-2">📜 Terms</a> | 
+            <a href="#" onclick="loadMarkdown('privacy')" class="mx-2">🔒 Privacy</a>
+        </div>
+    </div>
+
+    <script>
+        let language = localStorage.getItem("lang") || "en";
+
+        // 加载 Markdown 内容
+        function loadMarkdown(page) {
+            fetch(`${page}-${language}.md`)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById("markdown-content").innerHTML = marked.parse(text);
+                })
+                .catch(() => {
+                    document.getElementById("markdown-content").innerHTML = "<p>Content not available.</p>";
+                });
+        }
+
+        // 设置语言并重新加载
+        function setLanguage(lang) {
+            language = lang;
+            localStorage.setItem("lang", lang);
+            loadMarkdown("home");
+        }
+
+        // 默认加载主页
+        loadMarkdown("home");
+    </script>
 </body>
 </html>
