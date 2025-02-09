@@ -26,4 +26,4 @@ Textin 是一款文本加密App，帮助您安全传输密码、私密信息和�
 * 会话归档，支持关键字检索，快速查找重要信息。
 
 
-[隐私政策](privacy_zh.html) | [使用条款](terms_zh.html)
+📄 [隐私政策](privacy.html) | 📜 [使用条款](terms.html)
