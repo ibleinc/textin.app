@@ -1,0 +1,1 @@
+terms-zh-cn.md
